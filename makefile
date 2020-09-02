@@ -7,4 +7,4 @@ encrypt:
 	bash encrypt.sh
 
 move:
-	mv *.html ./docs/
+	mv index_encrypted.html ./docs/index.html
