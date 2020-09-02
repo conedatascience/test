@@ -1,0 +1,33 @@
+---
+title: "Testing Leaflet Browsers"
+---
+
+This is a test of rendering leaflet maps in a browser.
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+#knitr::opts_chunk$set(fig.align = 'center')
+library(tidyverse)
+library(kableExtra)
+library(leaflet)
+library(eaverse)
+
+# To Turn off Scientific Notation Use this.
+options(scipen = 999)
+
+# This cleans up numbers to add decimal places
+knitr::knit_hooks$set(inline = clean_numbers,
+                      dropdown = knit_dropdown,
+                      chunk = ea_hooks)
+```
+
+```{r leaflet-mapping, warning=FALSE, message=FALSE, out.width='80%'}
+
+leaflet() %>% 
+  addProviderTiles() %>% 
+  addLayersControl(overlayGroups = c('Show Hospitals'))  %>%
+  setView() %>% #center between gboro and burlington, include reidsville
+  addAwesomeMarkers(data = hospitals,  label = ~Hospital,
+                    icon = hospital_icon(),group = "Show Hospitals")
+
+```
